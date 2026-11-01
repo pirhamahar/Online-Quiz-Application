@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Light/dark theme button -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+
+    <div class="container">
+        <!-- Top bar: greeting and logout -->
+        <div class="header">
+            <h1>Welcome, <span id="userName">User</span>!</h1>
+            <div class="user-profile">
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+        </div>
+
+        <!-- Quiz categories will be added here in the next part -->
+        <div class="auth-card">
+            <h1>Quiz App</h1>
+            <p class="subtitle">You are logged in. Quiz categories are coming soon.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Quiz App. All rights reserved. | Semester V Project</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (Auth + Firestore) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Our scripts -->
+    <script src="firebase.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Check if the user is logged in
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                // Not logged in, send to login page
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Read the user's name from Firestore and show it
+            db.collection('users').doc(user.uid).get()
+                .then((doc) => {
+                    const name = doc.exists && doc.data().name
+                        ? doc.data().name
+                        : user.email.split('@')[0];
+                    document.getElementById('userName').textContent = name;
+                })
+                .catch((error) => {
+                    // If Firestore fails, show the part of the email before @
+                    console.error('Error loading user data:', error);
+                    document.getElementById('userName').textContent = user.email.split('@')[0];
+                });
+        });
+
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>

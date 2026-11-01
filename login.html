@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Light/dark theme button -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+
+    <div class="container">
+        <div class="auth-card">
+            <h1>Welcome Back!</h1>
+            <p class="subtitle">Login to continue your quiz journey</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="forgot-password-link">
+                    <a href="forgot-password.html">Forgot Password?</a>
+                </div>
+
+                <!-- Errors from auth.js are shown here -->
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+
+            <p class="auth-link">
+                Don't have an account? <a href="register.html">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Quiz App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (Auth + Firestore) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Our scripts -->
+    <script src="firebase.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

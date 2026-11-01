@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Light/dark theme button -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+
+    <div class="container">
+        <div class="auth-card">
+            <h1>Create Account</h1>
+            <p class="subtitle">Join us and start your quiz adventure</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 6 characters" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                </div>
+
+                <!-- Errors from auth.js are shown here -->
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+            <p class="auth-link">
+                Already have an account? <a href="login.html">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Quiz App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (Auth + Firestore) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Our scripts -->
+    <script src="firebase.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
